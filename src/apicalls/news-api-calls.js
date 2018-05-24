@@ -1,4 +1,4 @@
-import apiKey from './news-api-key';
+import { apiKey } from './news-api-key';
 
 export const fetchTrendingNews = async () => {
   const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
