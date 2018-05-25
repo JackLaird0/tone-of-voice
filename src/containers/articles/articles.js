@@ -18,7 +18,7 @@ class articles extends Component {
     const stories = this.props.trendingNews.map(story => {
       return (
         <div>
-          <p>{story.description}</p>
+          <p>{story.title}</p>
           <img src={story.urlToImage} />
         </div>
       )
