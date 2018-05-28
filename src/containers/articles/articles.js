@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addTrendingNews } from './../../actions/actions';
 import { fetchTrendingNews } from './../../apicalls/news-api-calls';
 
-class articles extends Component {
+class Articles extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,7 +14,6 @@ class articles extends Component {
   }
 
   displayTrendingNews = () => {
-    console.log(this.props.trendingNews)
     const stories = this.props.trendingNews.map(story => {
       return (
         <div>
@@ -43,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
   addTrendingNews: (story) => dispatch(addTrendingNews(story))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(articles);
+export default connect(mapStateToProps, mapDispatchToProps)(Articles);
