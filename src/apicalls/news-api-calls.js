@@ -34,3 +34,10 @@ export const fetchCNNNews = async () => {
   const CNNNews = await response.json();
   return CNNNews;
 };
+
+export const fetchFoxNews = async () => {
+  const url = `https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey=${apiKey}`;
+  const response = await fetch(url);
+  const FoxNews = await response.json();
+  return FoxNews;
+};
