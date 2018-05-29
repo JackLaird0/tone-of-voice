@@ -18,5 +18,5 @@ export const getchBBCNews = async () => {
   const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${apiKey}`;
   const response = await fetch(url);
   const BBCNews = await response.json();
-  return BBCNews
-}
+  return BBCNews;
+};  
