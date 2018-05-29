@@ -35,6 +35,13 @@ export const fetchCNNNews = async () => {
   return CNNNews;
 };
 
+export const fetchWashingtonPostNews = async () => {
+  const url = `https://newsapi.org/v2/top-headlines?sources=the-washington-post&apiKey=${apiKey}`;
+  const response = await fetch(url);
+  const WashingtonPostNews = await response.json();
+  return WashingtonPostNews;
+};
+
 export const fetchFoxNews = async () => {
   const url = `https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey=${apiKey}`;
   const response = await fetch(url);
