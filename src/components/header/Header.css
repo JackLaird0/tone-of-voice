@@ -1,0 +1,38 @@
+.header-container {
+  height: 180px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+
+.nav {
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  border-bottom: 3px solid;
+  font-size: 14px;
+  padding: 14px 14px;
+  text-decoration: none;
+  color: #26a566;
+  cursor: pointer;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+}
+
+.image {
+  height: 40px;
+  width: 40px;
+}
+
+.bbc-image {
+  height: 40px;
+  width: 50px
+}
