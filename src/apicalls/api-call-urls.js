@@ -10,6 +10,6 @@ export const CBSNews = `https://newsapi.org/v2/top-headlines?sources=cbs-news&ap
 
 export const CNNNews = `https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${apiKey}`;
 
-export const WashingtonPostNews = `https://newsapi.org/v2/top-headlines?sources=the-washington-post&apiKey=${apiKey}`;
+export const WashPostNews = `https://newsapi.org/v2/top-headlines?sources=the-washington-post&apiKey=${apiKey}`;
 
 export const FoxNews = `https://newsapi.org/v2/top-headlines?sources=fox-news&apiKey=${apiKey}`;
