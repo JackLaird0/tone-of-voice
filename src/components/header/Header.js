@@ -19,30 +19,30 @@ const Header = (props) => {
 
   return (
     <div className='header-container'>
+      <h1> tone of voice </h1>
       <header className='header'>
-        <button onClick={() => { props.changeSelectedOutlet('trending') }}>
-          Home
+        <button className='home' onClick={() => { props.changeSelectedOutlet('trending') }}>
+          HOME
         </button>
-        <button onClick={() => { selectCategory(ABCNews, 'abc') }}>
-          <img className='image' src='https://vignette.wikia.nocookie.net/central/images/3/3b/ABC_logo.png/revision/latest?cb=20180306094342' alt='abc' />
+        <button className='fox' onClick={() => { selectCategory(FoxNews, 'fox') }}>
+          FOX
         </button>
-        <button onClick={() => { selectCategory(BBCNews, 'bbc') }}>
-          <img className='bbc-image' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/BBC_World_News_red.svg/500px-BBC_World_News_red.svg.png' alt='bbc' />
+        <button className='abc' onClick={() => { selectCategory(ABCNews, 'abc') }}>
+          ABC
         </button>
-        <button onClick={() => { selectCategory(CBSNews, 'cbs') }}>
-          <img className='image' src='http://posturemonth.org/wp-content/uploads/2018/05/cbs.png' alt='cbs' />
+        <button className='bbc' onClick={() => { selectCategory(BBCNews, 'bbc') }}>
+          BBC
         </button>
-        <button onClick={() => { selectCategory(CNNNews, 'cnn') }}>
+        <button className='cnn' onClick={() => { selectCategory(CNNNews, 'cnn') }}>
           CNN
         </button>
-        <button onClick={() => { selectCategory(WashPostNews, 'washPost') }}>
-          Washington Post
+        <button className='cbs' onClick={() => { selectCategory(CBSNews, 'cbs') }}>
+          CBS
         </button>
-        <button onClick={() => { selectCategory(FoxNews, 'fox') }}>
-          Fox
+        <button className='washPost' onClick={() => { selectCategory(WashPostNews, 'washPost') }}>
+          WASH POST
         </button>
       </header>
-      <input type='text' />
     </div>
   )
 }

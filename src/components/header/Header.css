@@ -1,38 +1,115 @@
-.header-container {
-  height: 180px;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 25px;
+* {
+  font-family: 'Exo 2', sans-serif;
 }
 
-.nav {
-  background-color: rgba(255, 255, 255, 0);
-  border-radius: 5px;
-  border: 1px solid #ffffff;
-  border-bottom: 3px solid;
-  font-size: 14px;
-  padding: 14px 14px;
-  text-decoration: none;
-  color: #26a566;
-  cursor: pointer;
-  margin: 0 10px;
+.header-container {
+  height: 180px;
+  /* background-color: rgb(173, 173, 173); */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  /* padding: 0 20px; */
+}
+
+button {
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  margin: 10px 10px;
+  border: none;
+  box-shadow: 0px 3px 3px rgb(117, 117, 117);
+  font-size: 13px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+  text-align: center;
+}
+
+button:hover {
+  box-shadow: 0px 2px 3px rgb(117, 117, 117);
 }
 
 .header {
+  width: 100vw;
   display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
 }
 
-.image {
-  height: 40px;
-  width: 40px;
+.home {
+  background-color: #201a79;  
+  border-bottom: solid 3px #191369;
 }
 
-.bbc-image {
-  height: 40px;
-  width: 50px
+.home:hover {
+  background-color: #191369;
+  border-bottom: #191369;
+}
+
+.abc {
+  background-color: #3d536b;  
+  border-bottom: solid 3px #304458;
+}
+
+.abc:hover {
+  background-color: #304458;
+  border-bottom: #304458;
+}
+
+.bbc {
+  background-color: #9c0a0d;
+  border-bottom: solid 3px #800608;
+}
+
+.bbc:hover {
+  background-color: #860a0c;
+  border-bottom: #860a0c;
+}
+
+.cbs {
+  background-color: #707275;
+  border-bottom: solid 3px #5d5e61;
+}
+
+.cbs:hover {
+  background-color: #5d5e61;
+  border-bottom: #5d5e61;
+}
+
+.cnn {
+  background-color: #d81313;
+  border-bottom: solid 3px #ac0b0b;
+}
+
+.cnn:hover {
+  background-color: #ac0b0b;
+  border-bottom: #ac0b0b;
+}
+
+.fox {
+  background-color: #0f3b68;
+  border-bottom: solid 3px #04284d;
+}
+
+.fox:hover {
+  background-color: #04284d;
+  border-bottom: #04284d;
+}
+
+.washPost {
+  background-color: #5d5d5d;
+  border-bottom: solid 3px #474747;
+}
+
+.washPost:hover {
+  background-color: #474747;
+  border-bottom: #474747;
+}
+
+h1 {
+  font-family: 'Racing Sans One', cursive;
+  font-size: 46px;
+  margin: 10px 46px;
+  color: #201a79;
 }
