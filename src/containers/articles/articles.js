@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTrendingNews } from './../../actions/actions';
+import { addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { trendingNews } from './../../apicalls/api-call-urls'
 
@@ -10,16 +10,16 @@ class Articles extends Component {
   }
 
   async componentDidMount() {
-    const news = await fetchNewsArticles(trendingNews);
-    if(!this.props.trendingNews.length) {
-      this.props.addTrendingNews(news.articles);
+    if (!this.props.news.trending.length) {
+      const news = await fetchNewsArticles(trendingNews);
+      this.props.addNews('trending', news.articles);
     }
   }
 
   displayTrendingNews = () => {
-    const stories = this.props.trendingNews.map(story => {
+    const stories = this.props.news[this.props.selected].map(story => {
       return (
-        <div>
+        <div >
           <p>{story.title}</p>
           <img src={story.urlToImage} />
         </div>
@@ -38,11 +38,12 @@ class Articles extends Component {
 }
 
 const mapStateToProps = state => ({
-  trendingNews: state.trending
+  news: state.news,
+  selected: state.selected
 });
 
 const mapDispatchToProps = dispatch => ({
-  addTrendingNews: (story) => dispatch(addTrendingNews(story))
+  addNews: (outlet, news) => dispatch(addNews(outlet, news))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);
