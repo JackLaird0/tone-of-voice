@@ -1,6 +1,8 @@
-import { trendingNewsReducer } from './trending-news-reducer';
+import { newsReducer } from './news-reducer';
+import { changeSelectedOutletReducer } from './change-selected-outlet-reducer'
 import { combineReducers } from 'redux' 
 
 export const rootReducer = combineReducers({
-  trending: trendingNewsReducer
+  news: newsReducer,
+  selected: changeSelectedOutletReducer
 });
