@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTrendingNews } from './../../actions/actions';
-import { fetchTrendingNews } from './../../apicalls/news-api-calls';
+import { fetchNewsArticles } from './../../apicalls/news-api-calls';
+import { trendingNews } from './../../apicalls/api-call-urls'
 
 class Articles extends Component {
   constructor(props) {
@@ -9,8 +10,10 @@ class Articles extends Component {
   }
 
   async componentDidMount() {
-    const news = await fetchTrendingNews();
-    this.props.addTrendingNews(news.articles);
+    const news = await fetchNewsArticles(trendingNews);
+    if(!this.props.trendingNews.length) {
+      this.props.addTrendingNews(news.articles);
+    }
   }
 
   displayTrendingNews = () => {
