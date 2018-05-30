@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { trendingNews } from './../../apicalls/api-call-urls'
+import './Articles.css'
 
 class Articles extends Component {
   constructor(props) {
@@ -19,9 +20,11 @@ class Articles extends Component {
   displayTrendingNews = () => {
     const stories = this.props.news[this.props.selected].map(story => {
       return (
-        <div >
-          <p>{story.title}</p>
-          <img src={story.urlToImage} />
+        <div className='article'>
+          <div className='title-container'>
+            {story.title}
+          </div>
+          <img className='article-image' src={story.urlToImage} />
         </div>
       )
     })
@@ -30,7 +33,7 @@ class Articles extends Component {
 
   render() {
     return (
-      <div>
+      <div className='article-container'>
         {this.displayTrendingNews()}
       </div>
     )

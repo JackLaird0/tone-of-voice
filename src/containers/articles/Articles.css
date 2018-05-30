@@ -1,0 +1,26 @@
+.article-container{
+  width: 90vw;
+  height: 500px;
+  display: flex;
+  overflow: scroll;
+  margin: 40px auto;
+}
+
+.article {
+  margin: 10px 25px;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  width: 330px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.article-image {
+  height: 200px;
+  width: 330px;
+}
