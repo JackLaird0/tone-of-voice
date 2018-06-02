@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addNews } from './../../actions/actions';
+import { addNews, selectArticle } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
+import { fetchArticleInfo } from './../../apicalls/article-info-api-call';
+import { fetchWatsonAnalysis } from './../../apicalls/watson-tone-api-call';
 import { trendingNews } from './../../apicalls/api-call-urls'
 import './Articles.css'
+import { Link } from 'react-router-dom'
 
 class Articles extends Component {
   constructor(props) {
@@ -17,14 +20,27 @@ class Articles extends Component {
     }
   }
 
+  compareData = async (storyUrl) => {
+    
+  }
+
+  viewArticle = async (storyUrl) => {
+    const articleInfo = await fetchArticleInfo(storyUrl);
+    this.props.selectArticle(articleInfo.objects[0])
+  }
+
   displayTrendingNews = () => {
     const stories = this.props.news[this.props.selected].map(story => {
       return (
         <div className='article'>
           <div className='title-container'>
-            {story.title}
+            {story.title.toUpperCase()}
           </div>
           <img className='article-image' src={story.urlToImage} />
+          <button className="compare" onClick={() => {this.compareData()}}>COMPARE</button>
+          <Link to='/fullArticle'>
+            <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW STORY</button>
+          </Link>
         </div>
       )
     })
@@ -33,8 +49,11 @@ class Articles extends Component {
 
   render() {
     return (
-      <div className='article-container'>
-        {this.displayTrendingNews()}
+      <div>
+        <h1>{this.props.selected}</h1>
+        <div className='article-container'>
+          {this.displayTrendingNews()}
+        </div>
       </div>
     )
   }
@@ -46,7 +65,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addNews: (outlet, news) => dispatch(addNews(outlet, news))
+  addNews: (outlet, news) => dispatch(addNews(outlet, news)),
+  selectArticle: (article) => dispatch(selectArticle(article))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

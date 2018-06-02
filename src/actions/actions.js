@@ -8,3 +8,8 @@ export const changeSelectedOutlet = outlet => ({
   type: 'CHANGE_SELECTED_OUTLET',
   outlet
 });
+
+export const selectArticle = article => ({
+  type: 'SELECT_ARTICLE',
+  article
+})

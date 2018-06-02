@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { changeSelectedOutlet, addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { ABCNews, BBCNews, CBSNews, CNNNews, 
-  WashPostNews, FoxNews } from './../../apicalls/api-call-urls'
+  WashPostNews, FoxNews } from './../../apicalls/api-call-urls';
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
 
@@ -21,27 +22,41 @@ const Header = (props) => {
     <div className='header-container'>
       <h1> tone of voice </h1>
       <header className='header'>
-        <button className='home' onClick={() => { props.changeSelectedOutlet('trending') }}>
-          HOME
-        </button>
-        <button className='fox' onClick={() => { selectCategory(FoxNews, 'fox') }}>
-          FOX
-        </button>
-        <button className='abc' onClick={() => { selectCategory(ABCNews, 'abc') }}>
-          ABC
-        </button>
-        <button className='bbc' onClick={() => { selectCategory(BBCNews, 'bbc') }}>
-          BBC
-        </button>
-        <button className='cnn' onClick={() => { selectCategory(CNNNews, 'cnn') }}>
-          CNN
-        </button>
-        <button className='cbs' onClick={() => { selectCategory(CBSNews, 'cbs') }}>
-          CBS
-        </button>
-        <button className='washPost' onClick={() => { selectCategory(WashPostNews, 'washPost') }}>
-          WASH POST
-        </button>
+        <Link to='/'>
+          <button className='home' onClick={() => { props.changeSelectedOutlet('trending') }}>
+            TRENDING
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='fox' onClick={() => { selectCategory(FoxNews, 'fox') }}>
+            FOX
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='abc' onClick={() => { selectCategory(ABCNews, 'abc') }}>
+            ABC
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='bbc' onClick={() => { selectCategory(BBCNews, 'bbc') }}>
+            BBC
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='cnn' onClick={() => { selectCategory(CNNNews, 'cnn') }}>
+            CNN
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='cbs' onClick={() => { selectCategory(CBSNews, 'cbs') }}>
+            CBS
+          </button>
+        </Link>
+        <Link to='/'> 
+          <button className='washPost' onClick={() => { selectCategory(WashPostNews, 'washPost') }}>
+            WASH POST
+          </button>
+        </Link>
       </header>
     </div>
   )
