@@ -63,7 +63,7 @@ describe('api tests', () => {
     it('should return an object if the promise is resolved', async () => {
       let mockArticleUrl = 'https://www.cnn.com/videos/cnnmoney/2018/05/11/drug-prices-high-romans-orig.cnnmoney';
 
-      await expect(fetchNewsArticles(mockArticleUrl)).resolves.toEqual(response);
+      await expect(fetchArticleInfo(mockArticleUrl)).resolves.toEqual(response);
     });
   
     it('should throw an error if the promise rejects', async () => {
@@ -72,7 +72,7 @@ describe('api tests', () => {
       window.fetch = jest.fn().mockImplementation(() => 
         Promise.reject(expected));
   
-      await expect(fetchNewsArticles()).rejects.toEqual(expected);
+      await expect(fetchArticleInfo()).rejects.toEqual(expected);
     });
   });
 });
