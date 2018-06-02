@@ -8,16 +8,20 @@ import { trendingNews } from './../../apicalls/api-call-urls'
 import './Articles.css'
 import { Link } from 'react-router-dom'
 
-class Articles extends Component {
+export class Articles extends Component {
   constructor(props) {
     super(props);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     if (!this.props.news.trending.length) {
-      const news = await fetchNewsArticles(trendingNews);
-      this.props.addNews('trending', news.articles);
+      this.addArticleData()
     }
+  }
+
+  addArticleData = async () => {
+    const news = await fetchNewsArticles(trendingNews);
+    this.props.addNews('trending', news.articles);
   }
 
   compareData = async (storyUrl) => {
@@ -26,13 +30,13 @@ class Articles extends Component {
 
   viewArticle = async (storyUrl) => {
     const articleInfo = await fetchArticleInfo(storyUrl);
-    this.props.selectArticle(articleInfo.objects[0])
+    this.props.selectArticle(articleInfo.objects[0]);
   }
 
   displayTrendingNews = () => {
-    const stories = this.props.news[this.props.selected].map(story => {
+    const stories = this.props.news[this.props.selected].map((story, index) => {
       return (
-        <div className='article'>
+        <div className='article' key={`${this.props.selected} ${index}`}>
           <div className='title-container'>
             {story.title.toUpperCase()}
           </div>
@@ -59,12 +63,12 @@ class Articles extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   news: state.news,
   selected: state.selected
 });
 
-const mapDispatchToProps = dispatch => ({
+ export const mapDispatchToProps = dispatch => ({
   addNews: (outlet, news) => dispatch(addNews(outlet, news)),
   selectArticle: (article) => dispatch(selectArticle(article))
 })
