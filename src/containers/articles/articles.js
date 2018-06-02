@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
+import { fetchArticleInfo } from './../../apicalls/article-info-api-call';
 import { trendingNews } from './../../apicalls/api-call-urls'
 import './Articles.css'
 
@@ -17,14 +18,19 @@ class Articles extends Component {
     }
   }
 
+  compareData = async (storyUrl) => {
+    const articleInfo = await fetchArticleInfo(storyUrl);
+  }
+
   displayTrendingNews = () => {
     const stories = this.props.news[this.props.selected].map(story => {
       return (
         <div className='article'>
           <div className='title-container'>
-            {story.title}
+            {story.title.toUpperCase()}
           </div>
           <img className='article-image' src={story.urlToImage} />
+          <button className="compare" onClick={() => {this.compareData(story.url)}}>COMPARE</button>
         </div>
       )
     })
