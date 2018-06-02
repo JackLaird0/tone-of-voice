@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-class FullArticle extends Component {
+export class FullArticle extends Component {
   constructor(props) {
     super(props)
   }
@@ -25,7 +25,7 @@ class FullArticle extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   article: state.article
 })
 
