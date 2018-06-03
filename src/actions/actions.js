@@ -12,4 +12,10 @@ export const changeSelectedOutlet = outlet => ({
 export const selectArticle = article => ({
   type: 'SELECT_ARTICLE',
   article
-})
+});
+
+export const addToneData = (name, tone) => ({
+  type: 'ADD_TONE_DATA',
+  name,
+  tone
+});

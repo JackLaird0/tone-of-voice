@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addNews, selectArticle } from './../../actions/actions';
+import { addNews, selectArticle, addToneData } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { fetchArticleInfo } from './../../apicalls/article-info-api-call';
 import { fetchWatsonAnalysis } from './../../apicalls/watson-tone-api-call';
@@ -22,10 +22,13 @@ export class Articles extends Component {
     this.props.addNews('trending', news.articles);
   }
 
-  compareData = async (storyUrl) => {
-    const articleInfo = await fetchArticleInfo(storyUrl);
-    const analysis = await fetchWatsonAnalysis(articleInfo.objects[0].text);
-    console.log(analysis.document_tone.tones)
+  compareData = async (storyUrl, name) => {
+    if(!this.props.tone.name) {
+      const articleInfo = await fetchArticleInfo(storyUrl);
+      const analysis = await fetchWatsonAnalysis(articleInfo.objects[0].text);
+      const analysisData = analysis.document_tone.tones; 
+      this.props.addToneData(name, analysisData)
+    }
   }
 
   viewArticle = async (storyUrl) => {
@@ -33,21 +36,42 @@ export class Articles extends Component {
     this.props.selectArticle(articleInfo.objects[0]);
   }
 
+  checkForImage = (image, title) => {
+    if (image) {
+      return (
+        <img className='article-image' src={image} alt={title}/>
+      )
+    }
+  }
+
+  displayToneData = (name) => {
+    let toneData
+    if(this.props.tone[name]) {
+      toneData = this.props.tone[name].map(tone => {
+        return (
+          <div className='tone-data'>
+            <h4>{tone.tone_name}: {tone.score}</h4>
+          </div>
+        )
+      })
+    }
+    return toneData
+  }
+
   displayTrendingNews = () => {
     const stories = this.props.news[this.props.selected].map((story, index) => {
+      const name = `${this.props.selected} ${index}`;
       return (
-        <div className='article' key={`${this.props.selected} ${index}`}>
+        <div className='article' key={name}>
           <div className='title-container'>
             {story.title.toUpperCase()}
           </div>
-          <img className='article-image' src={story.urlToImage} alt={story.title}/>
-          <button className="compare" onClick={() => {this.compareData(story.url)}}>COMPARE</button>
+          {this.checkForImage(story.urlToImage, story.title)}
+          <button className="compare" onClick={() => {this.compareData(story.url, name)}}>COMPARE</button>
           <Link to='/fullArticle'>
             <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW STORY</button>
           </Link>
-          {/* <div>
-            {this.compareData(story.url)}
-          </div> */}
+          {this.displayToneData(name)}
         </div>
       )
     })
@@ -69,20 +93,24 @@ export class Articles extends Component {
 export const mapStateToProps = state => ({
   news: state.news,
   selected: state.selected,
-  article: state.article
+  article: state.article,
+  tone: state.tone
 });
 
  export const mapDispatchToProps = dispatch => ({
   addNews: (outlet, news) => dispatch(addNews(outlet, news)),
-  selectArticle: (article) => dispatch(selectArticle(article))
+  selectArticle: (article) => dispatch(selectArticle(article)),
+  addToneData: (name, tone) => dispatch(addToneData(name, tone))
 });
 
 Articles.propTypes = {
   news: PropTypes.object.isRequired,
   addNews: PropTypes.func,
+  tone: PropTypes.object,
   selected: PropTypes.string,
   article: PropTypes.object,
-  selectArticle: PropTypes.func
+  selectArticle: PropTypes.func,
+  addToneData: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

@@ -7,9 +7,11 @@ import { trendingNews } from './../../apicalls/api-call-urls';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { fetchArticleInfo } from './../../apicalls/article-info-api-call';
 import { MemoryRouter } from 'react-router-dom';
+import { fetchWatsonAnalysis } from './../../apicalls/watson-tone-api-call';
 
 jest.mock('./../../apicalls/news-api-calls');
 jest.mock('./../../apicalls/article-info-api-call');
+jest.mock('./../../apicalls/watson-tone-api-call')
 
 describe('Articles', () => {
   
@@ -21,8 +23,10 @@ describe('Articles', () => {
     mockProps = {
       news: {trending: [{title: 'trumpyboy'}]},
       selected: 'trending',
+      tone: {'trending 0': [{score: 100, tone_name: 'happy'}]},
       addNews: jest.fn(),
-      selectArticle: jest.fn()
+      selectArticle: jest.fn(),
+      addToneData: jest.fn()
     };
 
     articles = shallow(<Articles {...mockProps} />, { disableLifecycleMethods: true });
@@ -56,6 +60,34 @@ describe('Articles', () => {
     });
   });
 
+  describe('compareData', () => {
+    it('calls fetchArticleInfo with the correct params', async () => {
+      let expected = 'cnn.com/articles/trump';
+
+      await articles.instance().compareData(expected, 'trending 0')
+      
+      expect(fetchArticleInfo).toHaveBeenCalledWith(expected)
+    });
+
+    it('calls fetchWatsonAnalysis with the correct params', async () => {
+      let expected = 'I love testing';
+      let mockUrl ='cnn.com/articles/trump'
+
+      await articles.instance().compareData(mockUrl)
+
+      expect(fetchWatsonAnalysis).toHaveBeenCalledWith(expected)
+    })
+
+    it('calls addToneData with with the correct params', async () => {
+      let expected = [{score: 100, tone_name: 'happy'}];
+      let mockUrl ='cnn.com/articles/trump';
+
+      await articles.instance().compareData(mockUrl, 'trending 0');
+
+      expect(mockProps.addToneData).toHaveBeenCalledWith('trending 0', expected)
+    })
+  })
+
   describe('viewArticle', () => {
     it('calls fetchArticleInfo with the correct params', async () => {
       let expected = 'cnn.com/articles/trump';
@@ -64,6 +96,7 @@ describe('Articles', () => {
       
       expect(fetchArticleInfo).toHaveBeenCalledWith(expected)
     });
+
 
     it('calls selectArticle with the correct params', async () => {
       let mockUrl = 'cnn.com/articles/trump';
