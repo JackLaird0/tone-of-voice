@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 export class FullArticle extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount() {
     if(!this.props.article.text) {
@@ -19,7 +16,7 @@ export class FullArticle extends Component {
         <h2>{title}</h2>
         <h5>{author}</h5>
         <p>{text}</p>
-        <a href={pageUrl}></a>
+        <a href={pageUrl} target='_blank'> View Article</a>
       </div>
     )
   }
