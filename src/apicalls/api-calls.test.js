@@ -1,6 +1,7 @@
 import { fetchNewsArticles } from './news-api-calls';
 import { ABCNews } from './api-call-urls';
 import { fetchArticleInfo } from './article-info-api-call';
+import { fetchWatsonAnalysis } from './watson-tone-api-call';
 import { apiKey } from './article-info-api-key';
 
 
@@ -74,5 +75,46 @@ describe('api tests', () => {
   
       await expect(fetchArticleInfo()).rejects.toEqual(expected);
     });
+  });
+
+  describe('Fetch Watson Analysis', () => {
+    let mockText;
+
+    beforeEach(() => {
+      mockText = 'watson analysis is really cool';
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve(mockText)
+      }));
+    });
+
+    it('should call fetch watson analysis with the correct params', async () => {
+      let expected = ['http://localhost:5000/api/v1/analysis', 
+        {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({'text': mockText})
+        }
+      ]
+
+      await fetchWatsonAnalysis(mockText)
+
+      expect(window.fetch).toHaveBeenCalledWith(...expected);
+    });
+
+    it('should return an object if the promise is resolved', async () => {
+  
+      await expect(fetchWatsonAnalysis()).resolves.toEqual(mockText);
+    });
+
+    it('should throw an error if the promise rejects', async () => {
+      let expected = new Error('Failed to fetch');
+
+      window.fetch = jest.fn().mockImplementation(() => Promise.reject(expected));
+  
+      await expect(fetchWatsonAnalysis()).rejects.toEqual(expected);
+    })
   });
 });
