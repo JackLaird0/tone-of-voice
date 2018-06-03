@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export class FullArticle extends Component {
 
@@ -18,12 +19,16 @@ export class FullArticle extends Component {
         <p>{text}</p>
         <a href={pageUrl} target='_blank'> View Article</a>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export const mapStateToProps = state => ({
   article: state.article
-})
+});
 
-export default connect(mapStateToProps)(FullArticle)
+FullArticle.propTypes = {
+  article: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(FullArticle);
