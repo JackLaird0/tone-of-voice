@@ -48,7 +48,7 @@ ShallowWrapper {
         "entries": Array [
           Object {
             "hash": "",
-            "key": "cemf6l",
+            "key": "km2hst",
             "pathname": "/",
             "search": "",
             "state": undefined,
@@ -62,7 +62,7 @@ ShallowWrapper {
         "listen": [Function],
         "location": Object {
           "hash": "",
-          "key": "cemf6l",
+          "key": "km2hst",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -116,7 +116,7 @@ ShallowWrapper {
           "entries": Array [
             Object {
               "hash": "",
-              "key": "cemf6l",
+              "key": "km2hst",
               "pathname": "/",
               "search": "",
               "state": undefined,
@@ -130,7 +130,7 @@ ShallowWrapper {
           "listen": [Function],
           "location": Object {
             "hash": "",
-            "key": "cemf6l",
+            "key": "km2hst",
             "pathname": "/",
             "search": "",
             "state": undefined,
