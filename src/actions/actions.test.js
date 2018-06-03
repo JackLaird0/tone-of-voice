@@ -1,4 +1,4 @@
-import {addNews, changeSelectedOutlet, selectArticle } from './actions'
+import {addNews, changeSelectedOutlet, selectArticle, addToneData } from './actions'
 
 describe('Actions', () => {
   describe('addNews', () => {
@@ -63,6 +63,35 @@ describe('Actions', () => {
       let actual = selectArticle(mockArticle)
 
       expect(actual.article).toEqual(mockArticle)
+    });
+  });
+
+  describe('addToneData', () => {
+    it('has a type of ADD_TONE_DATA', () => {
+      let mockName = 'trending 0';
+      let mockTone = [{score: 100, tone_name: 'happy'}];
+
+      let actual = addToneData(mockName, mockTone);
+
+      expect(actual.type).toEqual('ADD_TONE_DATA');
+    });
+
+    it('adds name to the addToneData action', () => {
+      let mockName = 'trending 0';
+      let mockTone = [{score: 100, tone_name: 'happy'}];
+
+      let actual = addToneData(mockName, mockTone);
+
+      expect(actual.name).toEqual(mockName);
+    });
+
+    it('adds tone data to the addToneData action', () => {
+      let mockName = 'trending 0';
+      let mockTone = [{score: 100, tone_name: 'happy'}];
+
+      let actual = addToneData(mockName, mockTone);
+
+      expect(actual.tone).toEqual(mockTone);
     });
   });
 });
