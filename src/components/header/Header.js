@@ -5,7 +5,8 @@ import { changeSelectedOutlet, addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { ABCNews, BBCNews, CBSNews, CNNNews, 
   WashPostNews, FoxNews } from './../../apicalls/api-call-urls';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export class Header extends Component {
 
@@ -71,5 +72,11 @@ export const mapDispatchToProps = dispatch => ({
   changeSelectedOutlet: (outlet) => dispatch(changeSelectedOutlet(outlet)),
   addNews: (outlet, news) => dispatch(addNews(outlet, news))
 })
+
+Header.propTypes = {
+  news: PropTypes.object,
+  changeSelectedOutlet: PropTypes.func,
+  addNews: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
