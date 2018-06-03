@@ -112,14 +112,6 @@ describe('Articles', () => {
     });
   });
 
-  // describe('checkForImage', () => {
-  //   it('calls checkForImage with the correct params', () => {
-  //     articles.instance().checkForImage();
-
-  //     expect(articles.instance().checkForImage()).toHaveBeenCalled()
-  //   })
-  // });
-
   describe('mapStateToProps', () => {
 
     it('should return an object with news and selected', () => {
