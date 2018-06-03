@@ -109,6 +109,17 @@ describe('api tests', () => {
       await expect(fetchWatsonAnalysis()).resolves.toEqual(mockText);
     });
 
+    it('should throw unable to get texts tone if the status is above 200', () => {
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 404
+      }))
+
+      let response = fetchWatsonAnalysis()
+      let expected = Error("Unable to get text's tone")
+
+      expect(response).rejects.toEqual(expected)
+})
+
     it('should throw an error if the promise rejects', async () => {
       let expected = new Error('Failed to fetch');
 
