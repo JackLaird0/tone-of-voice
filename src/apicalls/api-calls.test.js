@@ -19,7 +19,7 @@ describe('api tests', () => {
     });
   
     it('should call fetch with the correct params', async () => {
-      let expected = ABCNews
+      let expected = ABCNews;
   
       await fetchNewsArticles(ABCNews);
   
@@ -53,7 +53,7 @@ describe('api tests', () => {
     });
   
     it('should call fetch with the correct params', async () => {
-      let mockArticleUrl = 'https://www.cnn.com/videos/cnnmoney/2018/05/11/drug-prices-high-romans-orig.cnnmoney'
+      let mockArticleUrl = 'https://www.cnn.com/videos/cnnmoney/2018/05/11/drug-prices-high-romans-orig.cnnmoney';
       let expected = `https://api.diffbot.com/v3/article?token=${apiKey}&url=${mockArticleUrl}`;
   
       await fetchArticleInfo(mockArticleUrl);
@@ -97,9 +97,9 @@ describe('api tests', () => {
           },
           body: JSON.stringify({'text': mockText})
         }
-      ]
+      ];
 
-      await fetchWatsonAnalysis(mockText)
+      await fetchWatsonAnalysis(mockText);
 
       expect(window.fetch).toHaveBeenCalledWith(...expected);
     });
@@ -112,13 +112,13 @@ describe('api tests', () => {
     it('should throw unable to get texts tone if the status is above 200', () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         status: 404
-      }))
+      }));
 
-      let response = fetchWatsonAnalysis()
-      let expected = Error("Unable to get text's tone")
+      let response = fetchWatsonAnalysis();
+      let expected = Error("Unable to get text's tone");
 
-      expect(response).rejects.toEqual(expected)
-})
+      expect(response).rejects.toEqual(expected);
+    });
 
     it('should throw an error if the promise rejects', async () => {
       let expected = new Error('Failed to fetch');
@@ -126,6 +126,6 @@ describe('api tests', () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.reject(expected));
   
       await expect(fetchWatsonAnalysis()).rejects.toEqual(expected);
-    })
+    });
   });
 });
