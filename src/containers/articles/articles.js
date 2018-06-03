@@ -81,7 +81,8 @@ Articles.propTypes = {
   news: PropTypes.object.isRequired,
   addNews: PropTypes.func,
   selected: PropTypes.string,
-  article: PropTypes.
+  article: PropTypes.object,
+  selectArticle: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);
