@@ -55,7 +55,6 @@ export class Articles extends Component {
         )
       })
     }
-    console.log(toneData)
     return toneData
   }
 
@@ -107,9 +106,11 @@ export const mapStateToProps = state => ({
 Articles.propTypes = {
   news: PropTypes.object.isRequired,
   addNews: PropTypes.func,
+  tone: PropTypes.object,
   selected: PropTypes.string,
   article: PropTypes.object,
-  selectArticle: PropTypes.func
+  selectArticle: PropTypes.func,
+  addToneData: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);
