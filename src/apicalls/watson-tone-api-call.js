@@ -7,13 +7,13 @@ export const fetchWatsonAnalysis = async (text) => {
         'Content-type': 'application/json'
       },
       body: JSON.stringify({'text': text})
-    })
+    });
     
     if (response.status <= 200){
       return await response.json()
     } else {
       throw new Error("Unable to get text's tone")
-}
+    }
   } catch (error) {
     throw error
   }
