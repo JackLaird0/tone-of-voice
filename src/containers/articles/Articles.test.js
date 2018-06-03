@@ -1,4 +1,3 @@
-import renderer from 'react-test-renderer';
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
 import { Articles, mapStateToProps, mapDispatchToProps } from './Articles';
@@ -113,9 +112,7 @@ describe('Articles', () => {
   });
 
   describe('mapStateToProps', () => {
-
     it('should return an object with news and selected', () => {
-
       const mockState = {
         news: {trending: [{title: 'trumpyboy'}]},
         selected: 'trending'
@@ -133,9 +130,7 @@ describe('Articles', () => {
   });
 
   describe('mapDispatchToProps', () => {
-
     it('should call add news dispatch with the correct params', () => {
-
       const mockDispatch = jest.fn();
       const news = {trending: [{title: 'best tests ever'}]}
       const outlet = 'trending'
@@ -161,6 +156,21 @@ describe('Articles', () => {
       
       mappedProps.selectArticle(article);
       expect(mockDispatch).toHaveBeenCalledWith(mockAction);
-    })
+    });
+
+    it('should call add tone data with correct params', () => {
+      const mockDispatch = jest.fn();
+      const name = 'trending 0'
+      const tone = [{score: 100, tone_name: 'happy'}]
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      const mockAction = {
+        type: 'ADD_TONE_DATA',
+        name,
+        tone
+      };
+      
+      mappedProps.addToneData(name, tone);
+      expect(mockDispatch).toHaveBeenCalledWith(mockAction);
+    });
   });
 });
