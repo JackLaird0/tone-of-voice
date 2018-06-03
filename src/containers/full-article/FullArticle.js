@@ -4,22 +4,30 @@ import PropTypes from 'prop-types';
 
 export class FullArticle extends Component {
 
-  componentDidMount() {
-    if(!this.props.article.text) {
-      this.props.history.push('/')
+  displayArticle = () => {
+    if (!Object.keys(this.props.article).length) {
+      return (
+        <img src="http://profanderson.blog.etecarmine.com.br/wp-content/uploads/2017/10/loading-gif-transparent-10.gif" alt="loading gif"/>
+      )
+    } else {
+      const {title, author, text, pageUrl} = this.props.article;
+      return (
+        <div>
+          <h2>{title}</h2>
+          <h5>{author}</h5>
+          <p>{text}</p>
+          <a href={pageUrl} target='_blank'> View Article</a>
+        </div>
+      );
     }
   }
 
   render () {
-    const {title, author, text, pageUrl} = this.props.article;
     return (
       <div>
-        <h2>{title}</h2>
-        <h5>{author}</h5>
-        <p>{text}</p>
-        <a href={pageUrl} target='_blank'> View Article</a>
+        {this.displayArticle()}
       </div>
-    );
+    )
   };
 };
 

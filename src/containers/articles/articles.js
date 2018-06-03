@@ -31,7 +31,12 @@ export class Articles extends Component {
     }
   }
 
+  // loadingCompareData = () => {
+  //   if (name) {}
+  // }
+
   viewArticle = async (storyUrl) => {
+    this.props.selectArticle({});
     const articleInfo = await fetchArticleInfo(storyUrl);
     this.props.selectArticle(articleInfo.objects[0]);
   }
@@ -52,9 +57,9 @@ export class Articles extends Component {
           <div className='tone-data'>
             <h4>{tone.tone_name}: {tone.score}</h4>
           </div>
-        )
-      })
-    }
+        );
+      });
+    } 
     return toneData
   }
 
@@ -69,7 +74,7 @@ export class Articles extends Component {
           {this.checkForImage(story.urlToImage, story.title)}
           <button className="compare" onClick={() => {this.compareData(story.url, name)}}>COMPARE</button>
           <Link to='/fullArticle'>
-            <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW STORY</button>
+            <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW ARTICLE</button>
           </Link>
           {this.displayToneData(name)}
         </div>
