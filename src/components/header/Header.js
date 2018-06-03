@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeSelectedOutlet, addNews } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';

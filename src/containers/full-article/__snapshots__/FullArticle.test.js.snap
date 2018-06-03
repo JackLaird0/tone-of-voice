@@ -38,7 +38,10 @@ ShallowWrapper {
 </p>,
         <a
           href="coolarticle.io"
-/>,
+          target="_blank"
+>
+           View Article
+</a>,
       ],
     },
     "ref": null,
@@ -81,10 +84,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
+          "children": " View Article",
           "href": "coolarticle.io",
+          "target": "_blank",
         },
         "ref": null,
-        "rendered": null,
+        "rendered": " View Article",
         "type": "a",
       },
     ],
@@ -108,7 +113,10 @@ ShallowWrapper {
 </p>,
           <a
             href="coolarticle.io"
-/>,
+            target="_blank"
+>
+             View Article
+</a>,
         ],
       },
       "ref": null,
@@ -151,10 +159,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
+            "children": " View Article",
             "href": "coolarticle.io",
+            "target": "_blank",
           },
           "ref": null,
-          "rendered": null,
+          "rendered": " View Article",
           "type": "a",
         },
       ],

@@ -9,9 +9,6 @@ import './Articles.css'
 import { Link } from 'react-router-dom'
 
 export class Articles extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     if (!this.props.news.trending.length) {
@@ -25,7 +22,9 @@ export class Articles extends Component {
   }
 
   compareData = async (storyUrl) => {
-    
+    const articleInfo = await fetchArticleInfo(storyUrl);
+    const analysis = await fetchWatsonAnalysis(articleInfo.objects[0].text);
+    console.log(analysis)
   }
 
   viewArticle = async (storyUrl) => {
@@ -40,8 +39,8 @@ export class Articles extends Component {
           <div className='title-container'>
             {story.title.toUpperCase()}
           </div>
-          <img className='article-image' src={story.urlToImage} />
-          <button className="compare" onClick={() => {this.compareData()}}>COMPARE</button>
+          <img className='article-image' src={story.urlToImage} alt={story.title}/>
+          <button className="compare" onClick={() => {this.compareData(story.url)}}>COMPARE</button>
           <Link to='/fullArticle'>
             <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW STORY</button>
           </Link>
@@ -54,7 +53,7 @@ export class Articles extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.selected}</h1>
+        <h2>{this.props.selected}</h2>
         <div className='article-container'>
           {this.displayTrendingNews()}
         </div>
@@ -65,7 +64,8 @@ export class Articles extends Component {
 
 export const mapStateToProps = state => ({
   news: state.news,
-  selected: state.selected
+  selected: state.selected,
+  article: state.article
 });
 
  export const mapDispatchToProps = dispatch => ({
