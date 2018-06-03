@@ -4,9 +4,10 @@ import { addNews, selectArticle } from './../../actions/actions';
 import { fetchNewsArticles } from './../../apicalls/news-api-calls';
 import { fetchArticleInfo } from './../../apicalls/article-info-api-call';
 import { fetchWatsonAnalysis } from './../../apicalls/watson-tone-api-call';
-import { trendingNews } from './../../apicalls/api-call-urls'
-import './Articles.css'
-import { Link } from 'react-router-dom'
+import { trendingNews } from './../../apicalls/api-call-urls';
+import './Articles.css';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export class Articles extends Component {
 
@@ -24,7 +25,7 @@ export class Articles extends Component {
   compareData = async (storyUrl) => {
     const articleInfo = await fetchArticleInfo(storyUrl);
     const analysis = await fetchWatsonAnalysis(articleInfo.objects[0].text);
-    console.log(analysis)
+    console.log(analysis.document_tone.tones)
   }
 
   viewArticle = async (storyUrl) => {
@@ -44,6 +45,9 @@ export class Articles extends Component {
           <Link to='/fullArticle'>
             <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW STORY</button>
           </Link>
+          {/* <div>
+            {this.compareData(story.url)}
+          </div> */}
         </div>
       )
     })
@@ -71,6 +75,13 @@ export const mapStateToProps = state => ({
  export const mapDispatchToProps = dispatch => ({
   addNews: (outlet, news) => dispatch(addNews(outlet, news)),
   selectArticle: (article) => dispatch(selectArticle(article))
-})
+});
+
+Articles.propTypes = {
+  news: PropTypes.object.isRequired,
+  addNews: PropTypes.func,
+  selected: PropTypes.string,
+  article: PropTypes.
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);
