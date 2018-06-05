@@ -31,10 +31,6 @@ export class Articles extends Component {
     }
   }
 
-  // loadingCompareData = () => {
-  //   if (name) {}
-  // }
-
   viewArticle = async (storyUrl) => {
     this.props.selectArticle({});
     const articleInfo = await fetchArticleInfo(storyUrl);
@@ -53,14 +49,15 @@ export class Articles extends Component {
     let toneData
     if(this.props.tone[name]) {
       toneData = this.props.tone[name].map(tone => {
-        return (
-          <div className='tone-data'>
-            <h4>{tone.tone_name}: {tone.score}</h4>
-          </div>
-        );
+        const toneScore = Math.floor(tone.score * 100)
+        if (Object.keys(this.props.tone[name]).length) {
+          return (
+            <h4 className='tone-data'>{tone.tone_name}: {Math.floor(tone.score * 100)}%</h4>
+          );
+        } 
       });
     } 
-    return toneData
+    return toneData;
   }
 
   displayTrendingNews = () => {
@@ -69,14 +66,22 @@ export class Articles extends Component {
       return (
         <div className='article' key={name}>
           <div className='title-container'>
-            {story.title.toUpperCase()}
+            <h3>{story.title.toUpperCase()}</h3>
           </div>
-          {this.checkForImage(story.urlToImage, story.title)}
-          <button className="compare" onClick={() => {this.compareData(story.url, name)}}>COMPARE</button>
-          <Link to='/fullArticle'>
-            <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW ARTICLE</button>
-          </Link>
-          {this.displayToneData(name)}
+          <div className='image-tone-container'>
+            <div className='image-tone'>
+              {this.checkForImage(story.urlToImage, story.title)}
+            </div>
+              <div className='tone-container'>
+                {this.displayToneData(name)}
+              </div>
+          </div>
+          <div className="buttons-container">
+            <Link to='/fullArticle'>
+              <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW ARTICLE</button>
+            </Link>
+            <button className="compare" onClick={() => {this.compareData(story.url, name)}}>CHECK OUT THE TONE</button>
+          </div>
         </div>
       )
     })
@@ -86,7 +91,7 @@ export class Articles extends Component {
   render() {
     return (
       <div>
-        <h2>{this.props.selected}</h2>
+        <h2 className='selected-outlet'>{this.props.selected}</h2>
         <div className='article-container'>
           {this.displayTrendingNews()}
         </div>
