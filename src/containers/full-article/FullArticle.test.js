@@ -2,7 +2,7 @@ import { FullArticle, mapStateToProps } from './FullArticle';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom'
+// import { MemoryRouter } from 'react-router-dom';
 
 describe('Header', () => {
 
@@ -16,7 +16,8 @@ describe('Header', () => {
         title: 'trump',
         author: 'me',
         text: 'interesting text',
-        pageUrl: 'coolarticle.io'
+        pageUrl: 'coolarticle.io',
+        images: 'coolarticle-image.io'
       }
     };
 
