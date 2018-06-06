@@ -2,7 +2,6 @@ import { FullArticle, mapStateToProps } from './FullArticle';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
 
 describe('Header', () => {
 
