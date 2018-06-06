@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
-import Articles from './containers/articles/Articles';
+import Articles from './containers/articles/articles';
 import Header from './components/header/Header';
-import FullArticle from './containers/full-article/FullArticle'
+import FullArticle from './containers/full-article/FullArticle';
 
 class App extends Component {
   render() {
