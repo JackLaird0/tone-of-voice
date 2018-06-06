@@ -5,4 +5,4 @@ export const changeSelectedOutletReducer = (state = 'trending', action) => {
     default:
       return state;
   }
-}
+};

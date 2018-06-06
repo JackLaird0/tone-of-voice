@@ -13,7 +13,7 @@ export class Articles extends Component {
 
   componentDidMount() {
     if (!this.props.news.trending.length) {
-      this.addArticleData()
+      this.addArticleData();
     }
   }
 
@@ -23,11 +23,11 @@ export class Articles extends Component {
   }
 
   compareData = async (storyUrl, name) => {
-    if(!this.props.tone.name) {
+    if (!this.props.tone.name) {
       const articleInfo = await fetchArticleInfo(storyUrl);
       const analysis = await fetchWatsonAnalysis(articleInfo.objects[0].text);
       const analysisData = analysis.document_tone.tones; 
-      this.props.addToneData(name, analysisData)
+      this.props.addToneData(name, analysisData);
     }
   }
 
@@ -41,18 +41,20 @@ export class Articles extends Component {
     if (image) {
       return (
         <img className='article-image' src={image} alt={title}/>
-      )
+      );
     }
   }
 
   displayToneData = (name) => {
-    let toneData
-    if(this.props.tone[name]) {
+    let toneData;
+    if (this.props.tone[name]) {
       toneData = this.props.tone[name].map(tone => {
-        const toneScore = Math.floor(tone.score * 100)
+        const toneScore = Math.floor(tone.score * 100);
         if (Object.keys(this.props.tone[name]).length) {
           return (
-            <h4 className='tone-data'>{tone.tone_name}: {Math.floor(tone.score * 100)}%</h4>
+            <h4 className='tone-data'>
+              {tone.tone_name}: {toneScore}%
+            </h4>
           );
         } 
       });
@@ -72,19 +74,25 @@ export class Articles extends Component {
             <div className='image-tone'>
               {this.checkForImage(story.urlToImage, story.title)}
             </div>
-              <div className='tone-container'>
-                {this.displayToneData(name)}
-              </div>
+            <div className='tone-container'>
+              {this.displayToneData(name)}
+            </div>
           </div>
           <div className="buttons-container">
             <Link to='/fullArticle'>
-              <button className='view-article' onClick={() => {this.viewArticle(story.url)}}>VIEW ARTICLE</button>
+              <button className='view-article' 
+                onClick={ () => { this.viewArticle(story.url); }}>
+                VIEW ARTICLE
+              </button>
             </Link>
-            <button className="compare" onClick={() => {this.compareData(story.url, name)}}>CHECK OUT THE TONE</button>
+            <button className="compare" 
+              onClick={() => { this.compareData(story.url, name); }}>
+              CHECK OUT THE TONE
+            </button>
           </div>
         </div>
-      )
-    })
+      );
+    });
     return stories;
   }
 
@@ -93,10 +101,10 @@ export class Articles extends Component {
       <div>
         <h2 className='selected-outlet'>{this.props.selected}</h2>
         <div className='article-container'>
-          {this.displayTrendingNews()}
+          { this.displayTrendingNews() }
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -107,7 +115,7 @@ export const mapStateToProps = state => ({
   tone: state.tone
 });
 
- export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addNews: (outlet, news) => dispatch(addNews(outlet, news)),
   selectArticle: (article) => dispatch(selectArticle(article)),
   addToneData: (name, tone) => dispatch(addToneData(name, tone))

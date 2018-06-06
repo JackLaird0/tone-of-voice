@@ -4,7 +4,7 @@ export const fetchNewsArticles = async (url) => {
     const articles = await response.json();
     return articles;
   } catch (error){
-    throw error
+    throw error;
   }
 };
 

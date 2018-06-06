@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export class Header extends Component {
 
   selectCategory = async (url, outlet) => {
-    if(!this.props.news[outlet].length) {
+    if (!this.props.news[outlet].length) {
       const news = await fetchNewsArticles(url);
       this.props.addNews(outlet, news.articles);
     }
@@ -25,54 +25,62 @@ export class Header extends Component {
         <header className='header'>
           <h5 className='nav-title'> OUTLETS </h5>
           <NavLink to='/'>
-            <div className=' news-link' onClick={() => { this.props.changeSelectedOutlet('trending') }}>
+            <div className=' news-link' 
+              onClick={() => { this.props.changeSelectedOutlet('trending'); }}>
               TRENDING
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(FoxNews, 'fox') }}>
+            <div className=' news-link' 
+              onClick={() => { this.selectCategory(FoxNews, 'fox'); }}>
               FOX
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(ABCNews, 'abc') }}>
+            <div className=' news-link' 
+              onClick={() => { this.selectCategory(ABCNews, 'abc'); }}>
               ABC
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(BBCNews, 'bbc') }}>
+            <div className=' news-link' 
+              onClick={() => { this.selectCategory(BBCNews, 'bbc'); }}>
               BBC
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(CNNNews, 'cnn') }}>
+            <div className=' news-link' 
+              onClick={() => { this.selectCategory(CNNNews, 'cnn'); }}>
               CNN
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(CBSNews, 'cbs') }}>
+            <div className=' news-link' 
+              onClick={() => { this.selectCategory(CBSNews, 'cbs'); }}>
               CBS
             </div>
           </NavLink>
           <NavLink to='/'> 
-            <div className=' news-link' onClick={() => { this.selectCategory(WashPostNews, 'washPost') }}>
+            <div className=' news-link' 
+              onClick={
+                () => { this.selectCategory(WashPostNews, 'washPost'); }}>
               WASH POST
             </div>
           </NavLink>
         </header>
       </div>
-    )
+    );
   }
 }
 
 export const mapStateToProps = state => ({
   news: state.news
-})
+});
 
 export const mapDispatchToProps = dispatch => ({
   changeSelectedOutlet: (outlet) => dispatch(changeSelectedOutlet(outlet)),
   addNews: (outlet, news) => dispatch(addNews(outlet, news))
-})
+});
 
 Header.propTypes = {
   news: PropTypes.object,
@@ -80,4 +88,4 @@ Header.propTypes = {
   addNews: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
