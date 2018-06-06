@@ -4,4 +4,4 @@ export const fetchWatsonAnalysis = jest.fn().mockImplementation(() =>
       tones: [{score: 100, tone_name: 'happy'}]
     }
   })
-)
+);

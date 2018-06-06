@@ -5,4 +5,4 @@ export const fetchNewsArticles = jest.fn().mockImplementation(() =>
       imgUrl: 'thisIsAnImage.gov'
     }
   })
-)
+);

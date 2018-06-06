@@ -10,11 +10,11 @@ export const fetchWatsonAnalysis = async (text) => {
     });
     
     if (response.status <= 200){
-      return await response.json()
+      return await response.json();
     } else {
-      throw new Error("Unable to get text's tone")
+      throw new Error("Unable to get text's tone");
     }
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
